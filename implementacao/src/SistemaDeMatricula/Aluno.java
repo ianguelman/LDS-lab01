@@ -13,7 +13,8 @@ public class Aluno extends Usuario {
 	private ArrayList<Disciplina> obrigatorias;
 	private ArrayList<Disciplina> optativas;
 
-	public Aluno(String nome, long matricula) {
+	public Aluno(String nome, long matricula, String login, String senha) {
+		super(login, senha);
 		this.nome = nome;
 		this.matricula = matricula;
 	}
@@ -26,6 +27,10 @@ public class Aluno extends Usuario {
 		obrigatorias.remove(disciplina);
 	}
 	
+	public void listarObrigatorias() {
+		System.out.println(obrigatorias.toString());
+	}
+	
 	public void addOptativa(Disciplina disciplina) {
 		optativas.add(disciplina);
 	}
@@ -33,6 +38,20 @@ public class Aluno extends Usuario {
 	public void removeOptativa(Disciplina disciplina) {
 		optativas.remove(disciplina);
 	}
+	
+	public void listarOptativas() {
+		System.out.println(optativas.toString());
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public long getMatricula() {
+		return matricula;
+	}
+
+	
 	
 	
 	
