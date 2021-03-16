@@ -6,7 +6,6 @@ public class Oferta {
 	private ArrayList<Disciplina> disciplinasOfertadas;
 
 	public Oferta(ArrayList<Disciplina> disciplinasOfertadas) {
-		super();
 		this.disciplinasOfertadas = disciplinasOfertadas;
 	}
 
