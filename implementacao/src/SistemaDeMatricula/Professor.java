@@ -9,4 +9,9 @@ public class Professor extends Usuario {
 		super(login, senha);
 		this.nome = nome;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
 }
