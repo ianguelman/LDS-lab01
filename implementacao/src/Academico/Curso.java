@@ -1,8 +1,10 @@
 package Academico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Curso {
+public class Curso implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private int creditos;
 	private ArrayList<Disciplina> disciplinas;

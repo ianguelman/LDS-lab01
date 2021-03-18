@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import Academico.Disciplina;
 
-
 public class Aluno extends Usuario {
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private long matricula;
 	private ArrayList<Disciplina> obrigatorias;
@@ -18,27 +18,27 @@ public class Aluno extends Usuario {
 		this.nome = nome;
 		this.matricula = matricula;
 	}
-	
+
 	public void addObrigatoria(Disciplina disciplina) {
 		obrigatorias.add(disciplina);
 	}
-	
+
 	public void removeObrigatoria(Disciplina disciplina) {
 		obrigatorias.remove(disciplina);
 	}
-	
+
 	public void listarObrigatorias() {
 		System.out.println(obrigatorias.toString());
 	}
-	
+
 	public void addOptativa(Disciplina disciplina) {
 		optativas.add(disciplina);
 	}
-	
+
 	public void removeOptativa(Disciplina disciplina) {
 		optativas.remove(disciplina);
 	}
-	
+
 	public void listarOptativas() {
 		System.out.println(optativas.toString());
 	}
@@ -51,8 +51,4 @@ public class Aluno extends Usuario {
 		return matricula;
 	}
 
-	
-	
-	
-	
 }

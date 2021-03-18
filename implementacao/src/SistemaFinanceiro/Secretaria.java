@@ -1,6 +1,13 @@
 package SistemaFinanceiro;
 
-public class Secretaria implements SistemaCobranca {
+import Login.Usuario;
+
+public class Secretaria extends Usuario implements SistemaCobranca {
+	private static final long serialVersionUID = 1L;
+	public Secretaria(String login, String senha) {
+		super(login, senha);
+	}
+	
 	public void notificarSistemaCobranca() {
 		System.out.println("Notificação cobrança!");
 	}
