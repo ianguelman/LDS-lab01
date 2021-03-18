@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import Academico.Curso;
 import Academico.Disciplina;
 import Academico.Oferta;
-import SistemaDeMatricula.Aluno;
-import SistemaDeMatricula.Professor;
-import SistemaFinanceiro.Secretaria;
+import Login.Usuario;
 
 public class Arquivos {
 
@@ -93,82 +92,28 @@ public class Arquivos {
 
 	}
 
-	public static ArrayList<Aluno> readAlunos() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+	public static ArrayList<Usuario> readUsuarios() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
-		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("Alunos.ser"));
+		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("Usuarios.ser"));
 
 		try {
-			Aluno aluno = (Aluno) entrada.readObject();
-			while (aluno != null) {
-				alunos.add(aluno);
-				aluno = (Aluno) entrada.readObject();
+			Usuario usuario = (Usuario) entrada.readObject();
+			while (usuario != null) {
+				usuarios.add(usuario);
+				usuario = (Usuario) entrada.readObject();
 			}
 		} catch (EOFException e) {
 
 		}
 
 		entrada.close();
-		return alunos;
+		return usuarios;
 	}
 
-	public static void writeAluno(Aluno aluno, ObjectOutputStream saida) throws FileNotFoundException, IOException {
+	public static void writeUsuario(Usuario usuario, ObjectOutputStream saida) throws FileNotFoundException, IOException {
 
-		saida.writeObject(aluno);
-
-	}
-
-	public static ArrayList<Professor> readProfessors()
-			throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Professor> professores = new ArrayList<Professor>();
-
-		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("Professors.ser"));
-
-		try {
-			Professor professor = (Professor) entrada.readObject();
-			while (professor != null) {
-				professores.add(professor);
-				professor = (Professor) entrada.readObject();
-			}
-		} catch (EOFException e) {
-
-		}
-
-		entrada.close();
-		return professores;
-	}
-
-	public static void writeProfessor(Professor professor, ObjectOutputStream saida)
-			throws FileNotFoundException, IOException {
-
-		saida.writeObject(professor);
-
-	}
-
-	public static ArrayList<Secretaria> readSecretarias()
-			throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Secretaria> secretarias = new ArrayList<Secretaria>();
-
-		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("Secretarias.ser"));
-
-		try {
-			Secretaria secretaria = (Secretaria) entrada.readObject();
-			while (secretaria != null) {
-				secretarias.add(secretaria);
-				secretaria = (Secretaria) entrada.readObject();
-			}
-		} catch (EOFException e) {
-
-		}
-
-		entrada.close();
-		return secretarias;
-	}
-
-	public static void writeSecretaria(Secretaria secretaria, ObjectOutputStream saida)
-			throws FileNotFoundException, IOException {
-
-		saida.writeObject(secretaria);
+		saida.writeObject(usuario);
 
 	}
 }
