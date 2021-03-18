@@ -1,12 +1,11 @@
 package Ui;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Academico.Disciplina;
 import EntradaSaida.Arquivos;
 import Login.Usuario;
 import SistemaDeMatricula.Aluno;
@@ -25,9 +24,33 @@ public class App {
 		System.out.println("1- Matricular em disciplina optativa ");
 		System.out.println("2- Matricular em disciplina obrigatoria");
 	}
+	
+	public static void listarMatriculados() throws FileNotFoundException, ClassNotFoundException, IOException {
+		ArrayList<Disciplina> disciplinas = Arquivos.readDisciplinas();
+		
+		for (Disciplina d : disciplinas) {
+			System.out.println(d.getNome() +":");
+			d.listarAlunos();
+			System.out.println("\n");
+		}
+	}
 
-	public static void menuProfessor(Usuario u) {
+	public static void menuProfessor(Usuario u) throws FileNotFoundException, ClassNotFoundException, IOException {
 		System.out.println("1- Verificar alunos matriculados na disciplina");
+		System.out.println("0- Sair");
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Digite a opcao: ");
+		int opc = sc.nextInt();
+		switch (opc) {
+			case 1:
+				listarMatriculados();
+				break;
+			case 0:
+			return;
+			default:
+				System.out.println("Digite uma opcao valida");
+				break;
+		}
 	}
 
 	public static void menuSecretaria(Usuario u) {
