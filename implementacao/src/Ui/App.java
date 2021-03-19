@@ -18,21 +18,30 @@ public class App {
 		System.out.println("1- Inscrever-se no semestre ");
 		System.out.println("2- Cancelar matricula");
 		System.out.println("3- Matricular");
+		System.out.println("0- Sair");
 	}
 
 	public void SubmenuMatricula() {
 		System.out.println("1- Matricular em disciplina optativa ");
 		System.out.println("2- Matricular em disciplina obrigatoria");
+		System.out.println("0- Sair");
 	}
-	
-	public static void listarMatriculados() throws FileNotFoundException, ClassNotFoundException, IOException {
-		ArrayList<Disciplina> disciplinas = Arquivos.readDisciplinas();
-		
-		for (Disciplina d : disciplinas) {
-			System.out.println(d.getNome() +":");
-			d.listarAlunos();
-			System.out.println("\n");
+
+	public void matricular(Aluno u) throws FileNotFoundException, ClassNotFoundException, IOException {
+		ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		System.out.println(disciplinas);
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Digite o nome da disicplina : ");
+		String dis = sc.nextLine();
+		for (Disciplina disciplina : disciplinas) {
+			if (dis.equals(disciplina.getNome()))
+				if (disciplina.isObrigatoria())
+					u.addObrigatoria(disciplina);
+				else
+					u.addOptativa(disciplina);
+				return;
 		}
+		System.out.println("Disiplina não encontrada");
 	}
 
 	public static void menuProfessor(Usuario u) throws FileNotFoundException, ClassNotFoundException, IOException {
@@ -42,20 +51,34 @@ public class App {
 		System.out.print("Digite a opcao: ");
 		int opc = sc.nextInt();
 		switch (opc) {
-			case 1:
-				listarMatriculados();
-				break;
-			case 0:
+		case 1:
+			listarMatriculados();
+			break;
+		case 0:
 			return;
-			default:
-				System.out.println("Digite uma opcao valida");
-				break;
+		default:
+			System.out.println("Digite uma opcao valida");
+			break;
+		}
+	}
+
+	public static void listarMatriculados() throws FileNotFoundException, ClassNotFoundException, IOException {
+		ArrayList<Disciplina> disciplinas = Arquivos.readDisciplinas();
+
+		for (Disciplina d : disciplinas) {
+			System.out.println(d.getNome() + ":");
+			d.listarAlunos();
+			System.out.println("\n");
 		}
 	}
 
 	public static void menuSecretaria(Usuario u) {
 		System.out.println("1- Gerar Curriculo");
 		System.out.println("2- Atualizar Curriculo");
+		System.out.println("3- Criar Aluno");
+		System.out.println("4- Criar Professor");
+		System.out.println("5- Criar Disciplina");
+		System.out.println("0- Sair");
 	}
 
 	public static void menuLogar() throws FileNotFoundException, ClassNotFoundException, IOException {
@@ -90,6 +113,7 @@ public class App {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+//		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"), new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
 		menuLogar();
 	}
 
