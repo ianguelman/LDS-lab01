@@ -54,4 +54,10 @@ public class Disciplina implements Serializable {
 		return ativa;
 	}
 
+	@Override
+	public String toString() {
+		return "Disciplina [nome=" + nome + ", inscritos=" + inscritos + ", obrigatoria=" + obrigatoria + ", ativa="
+				+ ativa + "]";
+	}
+
 }

@@ -1,7 +1,9 @@
 package Ui;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -113,8 +115,12 @@ public class App {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
-//		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"), new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
-		menuLogar();
+//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Usuarios.ser", true));
+//		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"), oos );
+//		Arquivos.writeUsuario(new Aluno("nomeAluno", 123456, "aluno", "senha"),oos);
+//		Arquivos.writeUsuario(new Professor("nomeProf", "professor", "senha"), oos);
+//		menuLogar();
+		System.out.println(Arquivos.readUsuarios());
 	}
 
 }

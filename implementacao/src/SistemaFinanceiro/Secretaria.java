@@ -64,4 +64,9 @@ public class Secretaria extends Usuario implements SistemaCobranca {
 		Arquivos.writeDisciplina(new Disciplina(nome, obg.equals("s")),
 				new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
 	}
+
+	@Override
+	public String toString() {
+		return "Secretaria [" + super.toString() + "]";
+	}
 }

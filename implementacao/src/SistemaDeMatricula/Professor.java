@@ -15,4 +15,9 @@ public class Professor extends Usuario {
 		return nome;
 	}
 
+	@Override
+	public String toString() {
+		return "Professor [" + super.toString() + ", nome=" + nome + "]";
+	}
+
 }

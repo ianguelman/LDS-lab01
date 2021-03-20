@@ -15,4 +15,9 @@ public abstract class Usuario implements Serializable{
 	public boolean logar(String login, String senha) {
 		return login.equals(this.login) && senha.equals(this.senha);
 	}
+
+	@Override
+	public String toString() {
+		return "login=" + login + ", senha=" + senha;
+	}
 }

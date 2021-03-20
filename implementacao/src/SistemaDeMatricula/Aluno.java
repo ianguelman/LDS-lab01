@@ -51,4 +51,10 @@ public class Aluno extends Usuario {
 		return matricula;
 	}
 
+	@Override
+	public String toString() {
+		return "Aluno [" + super.toString() + " ,nome=" + nome + ", matricula=" + matricula + ", obrigatorias="
+				+ obrigatorias + ", optativas=" + optativas + "]";
+	}
+
 }

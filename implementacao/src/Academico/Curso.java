@@ -8,7 +8,7 @@ public class Curso implements Serializable {
 	private String nome;
 	private int creditos;
 	private ArrayList<Disciplina> disciplinas;
-	
+
 	public Curso(String nome, int creditos, ArrayList<Disciplina> disciplinas) {
 		this.nome = nome;
 		this.creditos = creditos;
@@ -31,5 +31,10 @@ public class Curso implements Serializable {
 
 	public int getCreditos() {
 		return creditos;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [nome=" + nome + ", creditos=" + creditos + ", disciplinas=" + disciplinas + "]";
 	}
 }
