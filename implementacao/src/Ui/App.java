@@ -1,5 +1,6 @@
 package Ui;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class App {
 					u.addObrigatoria(disciplina);
 				else
 					u.addOptativa(disciplina);
-				return;
+			return;
 		}
 		System.out.println("Disiplina não encontrada");
 	}
@@ -115,12 +116,19 @@ public class App {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
-//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Usuarios.ser", true));
-//		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"), oos );
-//		Arquivos.writeUsuario(new Aluno("nomeAluno", 123456, "aluno", "senha"),oos);
-//		Arquivos.writeUsuario(new Professor("nomeProf", "professor", "senha"), oos);
+
+		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"));
+		Arquivos.writeUsuario(new Aluno("nomeAluno", 123456, "aluno", "senha"));
+		Arquivos.writeUsuario(new Professor("nomeProf", "professor", "senha"));
 //		menuLogar();
+
 		System.out.println(Arquivos.readUsuarios());
+
+		Arquivos.updateUsuario(new Secretaria("secretaria", "Nova senha"));
+		Arquivos.updateUsuario(new Professor("Novo Nome Prof", "professor", " Nova senha"));
+		
+		System.out.println(Arquivos.readUsuarios());
+
 	}
 
 }

@@ -29,7 +29,7 @@ public class Secretaria extends Usuario implements SistemaCobranca {
 		System.out.println("Notificar aluno!");
 	}
 
-	public void criarAluno() throws FileNotFoundException, IOException {
+	public void criarAluno() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Digite o nome do aluno: ");
 		String nome = sc.next();
@@ -39,11 +39,10 @@ public class Secretaria extends Usuario implements SistemaCobranca {
 		String login = sc.next();
 		System.out.print("Digite a senha para o aluno: ");
 		String senha = sc.next();
-		Arquivos.writeUsuario((Usuario) new Aluno(nome, matricula, login, senha),
-				new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
+		Arquivos.writeUsuario((Usuario) new Aluno(nome, matricula, login, senha));
 	}
 
-	public void criarProfessor() throws FileNotFoundException, IOException {
+	public void criarProfessor() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Digite o nome do professor: ");
 		String nome = sc.next();
@@ -51,18 +50,16 @@ public class Secretaria extends Usuario implements SistemaCobranca {
 		String login = sc.next();
 		System.out.print("Digite a senha para o professor: ");
 		String senha = sc.next();
-		Arquivos.writeUsuario(new Professor(nome, login, senha),
-				new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
+		Arquivos.writeUsuario(new Professor(nome, login, senha));
 	}
 
-	public void criarDisciplinas() throws FileNotFoundException, IOException {
+	public void criarDisciplinas() throws FileNotFoundException, IOException, ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Digite o nome da Disciplina: ");
 		String nome = sc.nextLine();
 		System.out.print("A disciplina é obrigatória (s/n): ");
 		String obg = sc.next();
-		Arquivos.writeDisciplina(new Disciplina(nome, obg.equals("s")),
-				new ObjectOutputStream(new FileOutputStream("Usuarios.ser")));
+		Arquivos.writeDisciplina(new Disciplina(nome, obg.equals("s")));
 	}
 
 	@Override
