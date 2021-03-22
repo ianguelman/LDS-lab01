@@ -12,13 +12,11 @@ import java.util.stream.Collectors;
 
 import Academico.Curso;
 import Academico.Disciplina;
-import Academico.Oferta;
 import Login.Usuario;
 
 public class Arquivos {
 
 	private final static String arqUsuarios = "Usuarios.ser";
-	private final static String arqOfertas = "Ofertas.ser";
 	private final static String arqDisciplinas = "Disciplinas.ser";
 	private final static String arqCursos = "Cursos.ser";
 
@@ -51,8 +49,7 @@ public class Arquivos {
 
 	}
 
-	public static void updateCurso(Curso curso)
-			throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static void updateCurso(Curso curso) throws FileNotFoundException, IOException, ClassNotFoundException {
 		ArrayList<Curso> cursos = readCursos();
 		ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(arqCursos));
 		cursos = (ArrayList<Curso>) cursos.stream().filter(c -> !c.getNome().equals(curso.getNome()))
@@ -64,7 +61,8 @@ public class Arquivos {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Disciplina> readDisciplinas() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static ArrayList<Disciplina> readDisciplinas()
+			throws FileNotFoundException, IOException, ClassNotFoundException {
 		ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(arqDisciplinas));
@@ -78,7 +76,8 @@ public class Arquivos {
 		return disciplinas;
 	}
 
-	public static void writeDisciplina(Disciplina disciplina) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public static void writeDisciplina(Disciplina disciplina)
+			throws FileNotFoundException, IOException, ClassNotFoundException {
 		ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
 		try {
 			disciplinas = readDisciplinas();
@@ -96,51 +95,10 @@ public class Arquivos {
 			throws FileNotFoundException, IOException, ClassNotFoundException {
 		ArrayList<Disciplina> disciplinas = readDisciplinas();
 		ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(arqDisciplinas));
-		disciplinas = (ArrayList<Disciplina>) disciplinas.stream().filter(d -> !d.getNome().equals(disciplina.getNome()))
-				.collect(Collectors.toList());
+		disciplinas = (ArrayList<Disciplina>) disciplinas.stream()
+				.filter(d -> !d.getNome().equals(disciplina.getNome())).collect(Collectors.toList());
 		disciplinas.add(disciplina);
 		saida.writeObject(disciplinas);
-		saida.close();
-
-	}
-
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Oferta> readOfertas() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
-
-		ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(arqOfertas));
-
-		try {
-			ofertas = (ArrayList<Oferta>) entrada.readObject();
-		} catch (EOFException e) {
-
-		}
-		entrada.close();
-		return ofertas;
-	}
-
-	public static void writeOferta(Oferta oferta) throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
-		try {
-			ofertas = readOfertas();
-		} catch (FileNotFoundException e) {
-
-		}
-		ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(arqOfertas));
-		ofertas.add(oferta);
-		saida.writeObject(ofertas);
-		saida.close();
-
-	}
-
-	public static void updateOferta(Oferta oferta)
-			throws FileNotFoundException, IOException, ClassNotFoundException {
-		ArrayList<Oferta> ofertas = readOfertas();
-		ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(arqOfertas));
-		ofertas = (ArrayList<Oferta>) ofertas.stream().filter(o -> !o.getNome().equals(oferta.getNome()))
-				.collect(Collectors.toList());
-		ofertas.add(oferta);
-		saida.writeObject(ofertas);
 		saida.close();
 
 	}

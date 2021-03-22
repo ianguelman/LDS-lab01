@@ -11,27 +11,29 @@ public class Disciplina implements Serializable {
 	private ArrayList<Aluno> inscritos;
 	private boolean obrigatoria;
 	private boolean ativa;
+	private boolean ofertada;
 
-	public Disciplina(String nome, ArrayList<Aluno> inscritos, boolean obrigatoria, boolean ativa) {
-		this.nome = nome;
-		this.inscritos = inscritos;
-		this.obrigatoria = obrigatoria;
-		this.ativa = inscritos.size() >= 3;
-	}
-
-	public Disciplina(String nome, boolean obrigatoria) {
+	public Disciplina(String nome, boolean obrigatoria, boolean ofertada) {
 		this.nome = nome;
 		this.inscritos = new ArrayList<Aluno>();
 		this.obrigatoria = obrigatoria;
 		this.ativa = false;
+		this.ofertada = ofertada;
 	}
 
-	public void matriucular(Aluno aluno) {
+	public void matricular(Aluno aluno) {
+		if (inscritos == null)
+			inscritos = new ArrayList<Aluno>();
 		inscritos.add(aluno);
 	}
 
-	public void desmatriucular(Aluno aluno) {
-		inscritos.remove(aluno);
+	public void desmatricular(Aluno aluno) {
+		Aluno ar = null;
+		for (Aluno a : inscritos) {
+			if (a.getLogin().equals(aluno.getLogin()))
+				ar = a;
+		}
+		inscritos.remove(ar);
 	}
 
 	public void listarAlunos() {
@@ -51,7 +53,20 @@ public class Disciplina implements Serializable {
 	}
 
 	public boolean isAtiva() {
+		this.ativa = inscritos.size() > 3;
 		return ativa;
+	}
+	
+	public void setOfertada(boolean bol) {
+		this.ofertada = bol;
+		
+	}
+	public boolean isOfertada() { 
+		return ofertada;
+	}
+
+	public boolean temVaga() {
+		return inscritos.size() <= 60;
 	}
 
 	@Override

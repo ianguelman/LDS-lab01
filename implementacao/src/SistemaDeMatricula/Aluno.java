@@ -20,6 +20,8 @@ public class Aluno extends Usuario {
 	}
 
 	public void addObrigatoria(Disciplina disciplina) {
+		if (obrigatorias == null)
+			obrigatorias = new ArrayList<Disciplina>();
 		obrigatorias.add(disciplina);
 	}
 
@@ -28,10 +30,14 @@ public class Aluno extends Usuario {
 	}
 
 	public void listarObrigatorias() {
+		if (obrigatorias == null)
+			obrigatorias = new ArrayList<Disciplina>();
 		System.out.println(obrigatorias.toString());
 	}
 
 	public void addOptativa(Disciplina disciplina) {
+		if (optativas == null)
+			optativas = new ArrayList<Disciplina>();
 		optativas.add(disciplina);
 	}
 
@@ -40,6 +46,8 @@ public class Aluno extends Usuario {
 	}
 
 	public void listarOptativas() {
+		if (optativas == null)
+			optativas = new ArrayList<Disciplina>();
 		System.out.println(optativas.toString());
 	}
 
@@ -51,10 +59,13 @@ public class Aluno extends Usuario {
 		return matricula;
 	}
 
+	public boolean isMatriculado() {
+		return obrigatorias.size() > 0 && optativas.size() > 0;
+	}
+
 	@Override
 	public String toString() {
-		return "Aluno [" + super.toString() + " ,nome=" + nome + ", matricula=" + matricula + ", obrigatorias="
-				+ obrigatorias + ", optativas=" + optativas + "]";
+		return "Aluno [" + "nome=" + nome + ", matricula=" + matricula + "]";
 	}
 
 }

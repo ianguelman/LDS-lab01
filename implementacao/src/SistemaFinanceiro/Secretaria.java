@@ -4,8 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
+import Academico.Curso;
 import Academico.Disciplina;
 import Login.Usuario;
 
@@ -29,37 +32,69 @@ public class Secretaria extends Usuario implements SistemaCobranca {
 		System.out.println("Notificar aluno!");
 	}
 
-	public void criarAluno() throws FileNotFoundException, IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public void criarAluno(Scanner sc) throws FileNotFoundException, IOException, ClassNotFoundException {
 		System.out.print("Digite o nome do aluno: ");
-		String nome = sc.next();
+		String nome = sc.nextLine();
 		System.out.print("Digite a matricula do aluno: ");
 		Long matricula = sc.nextLong();
 		System.out.print("Digite o login para o aluno: ");
-		String login = sc.next();
+		String login = sc.nextLine();
 		System.out.print("Digite a senha para o aluno: ");
-		String senha = sc.next();
+		String senha = sc.nextLine();
 		Arquivos.writeUsuario((Usuario) new Aluno(nome, matricula, login, senha));
 	}
 
-	public void criarProfessor() throws FileNotFoundException, IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public void criarProfessor(Scanner sc) throws FileNotFoundException, IOException, ClassNotFoundException {
 		System.out.print("Digite o nome do professor: ");
-		String nome = sc.next();
+		String nome = sc.nextLine();
 		System.out.print("Digite o login para o professor: ");
-		String login = sc.next();
+		String login = sc.nextLine();
 		System.out.print("Digite a senha para o professor: ");
-		String senha = sc.next();
+		String senha = sc.nextLine();
 		Arquivos.writeUsuario(new Professor(nome, login, senha));
 	}
 
-	public void criarDisciplinas() throws FileNotFoundException, IOException, ClassNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public void criarDisciplina(Scanner sc) throws FileNotFoundException, IOException, ClassNotFoundException {
+		sc.nextLine();
 		System.out.print("Digite o nome da Disciplina: ");
 		String nome = sc.nextLine();
-		System.out.print("A disciplina é obrigatória (s/n): ");
-		String obg = sc.next();
-		Arquivos.writeDisciplina(new Disciplina(nome, obg.equals("s")));
+		System.out.print("A disciplina e obrigatoria (s/n): ");
+		String obg = sc.nextLine();
+		System.out.print("A disciplina sera ofertada (s/n): ");
+		String of = sc.nextLine();
+		Arquivos.writeDisciplina(new Disciplina(nome, obg.equals("s"), of.equals("s")));
+	}
+
+	public void criarCurso(Scanner sc) throws FileNotFoundException, IOException, ClassNotFoundException {
+		sc.nextLine();
+		System.out.print("Digite o nome do Curso: ");
+		String nome = sc.nextLine();
+		System.out.print("Digite o numero de creditos: ");
+		int cred = sc.nextInt();
+
+		ArrayList<Disciplina> disciplinas;
+		String dis;
+		System.out.println("Disciplinas:");
+		disciplinas = Arquivos.readDisciplinas();
+		
+		sc.nextLine();
+		do {
+			System.out.println(disciplinas);
+			System.out.print("Digite o nome da disciplina a ser adicionada (para sair escreva \"sair\"): ");
+			dis = sc.nextLine();
+			
+			Disciplina d = null;
+			
+			for (Disciplina disciplina : disciplinas) {
+				if (dis.equals(disciplina.getNome())) {
+					d = disciplina;
+				}
+			}
+			disciplinas.add(d);
+		} while (!dis.equals("sair"));
+		
+		Arquivos.writeCurso(new Curso(nome, cred, disciplinas));
+		System.out.println("Curso criado com sucesso");
 	}
 
 	@Override
