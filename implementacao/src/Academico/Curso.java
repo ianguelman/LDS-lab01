@@ -35,6 +35,6 @@ public class Curso implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Curso [nome=" + nome + ", creditos=" + creditos + ", disciplinas=" + disciplinas + "]";
+		return "\nCurso [nome=" + nome + ", creditos=" + creditos + ", disciplinas=" + disciplinas + "]";
 	}
 }

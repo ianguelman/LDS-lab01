@@ -42,7 +42,7 @@ public class App {
 			case 0:
 				return;
 			default:
-				System.out.println("Digite uma opção valida");
+				System.out.println("Digite uma opï¿½ï¿½o valida");
 				break;
 			}
 		} while (opc != 0);
@@ -57,9 +57,9 @@ public class App {
 			aluno.listarObrigatorias();
 			System.out.print("Optativas: ");
 			aluno.listarOptativas();
-			System.out.println("Solicitação de cobrança enviada ao Sistema Financeiro");
+			System.out.println("Solicitaï¿½ï¿½o de cobranï¿½a enviada ao Sistema Financeiro");
 		} else
-			System.out.println("É necessario se matricular antes de realizar inscricao no semestre");
+			System.out.println("ï¿½ necessario se matricular antes de realizar inscricao no semestre");
 	}
 
 	public static void cancelarMatricula() throws FileNotFoundException, ClassNotFoundException, IOException {
@@ -96,7 +96,7 @@ public class App {
 
 		entrada.nextLine();
 		for (int i = 1; i <= 4; i++) {
-			System.out.print("Digite o nome da " + i + "ª disciplina obrigatoria: ");
+			System.out.print("Digite o nome da " + i + " disciplina obrigatoria: ");
 			String dis = entrada.nextLine();
 			for (Disciplina disciplina : disciplinas) {
 				if (dis.equals(disciplina.getNome())) {
@@ -107,7 +107,7 @@ public class App {
 						Arquivos.updateDisciplina(disciplina);
 						System.out.println("Matriculado com sucesso");
 					} else
-						System.out.println("Não há vagas para a disciplina");
+						System.out.println("Nï¿½o hï¿½ vagas para a disciplina");
 				}
 			}
 		}
@@ -116,7 +116,7 @@ public class App {
 		System.out.println(
 				disciplinas.stream().filter(d -> !d.isObrigatoria() && d.isOfertada()).collect(Collectors.toList()));
 		for (int i = 1; i <= 2; i++) {
-			System.out.print("Digite o nome da " + i + "ª disciplina optativa: ");
+			System.out.print("Digite o nome da " + i + " disciplina optativa: ");
 			String dis = entrada.nextLine();
 			for (Disciplina disciplina : disciplinas) {
 				if (dis.equals(disciplina.getNome())) {
@@ -127,7 +127,7 @@ public class App {
 						Arquivos.updateDisciplina(disciplina);
 						System.out.println("Matriculado com sucesso");
 					} else
-						System.out.println("Não há vagas para a disciplina");
+						System.out.println("Nï¿½o hï¿½ vagas para a disciplina");
 				}
 			}
 		}
@@ -202,7 +202,7 @@ public class App {
 			case 0:
 				return;
 			default:
-				System.out.println("Digite uma opção valida");
+				System.out.println("Digite uma opï¿½ï¿½o valida");
 				break;
 			}
 		} while (opc != 0);
@@ -258,6 +258,18 @@ public class App {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+		
+//		Arquivos.writeUsuario(new Secretaria("secretaria", "senha"));
+//		Arquivos.writeUsuario(new Aluno("nomeAluno", 123456, "aluno", "senha"));
+//		Arquivos.writeUsuario(new Professor("nomeProf", "professor", "senha"));
+//
+//		System.out.println(Arquivos.readUsuarios());
+//
+//		Arquivos.updateUsuario(new Secretaria("secretaria", "Nova senha"));
+//		Arquivos.updateUsuario(new Professor("Novo Nome Prof", "professor", " Nova senha"));
+//		
+//		System.out.println(Arquivos.readUsuarios());
+//		System.out.println(Arquivos.readDisciplinas());
 
 		menuLogar();
 

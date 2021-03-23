@@ -53,7 +53,7 @@ public class Disciplina implements Serializable {
 	}
 
 	public boolean isAtiva() {
-		this.ativa = inscritos.size() > 3;
+		this.ativa = inscritos.size() >= 3;
 		return ativa;
 	}
 	
@@ -71,7 +71,7 @@ public class Disciplina implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Disciplina [nome=" + nome + ", inscritos=" + inscritos + ", obrigatoria=" + obrigatoria + ", ativa="
+		return "\nDisciplina [nome=" + nome + ", inscritos=" + inscritos + ", obrigatoria=" + obrigatoria + ", ativa="
 				+ ativa + "]";
 	}
 
